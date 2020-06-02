@@ -1,2 +1,12 @@
 ---
 # tasks file for testmol
+- name: install httpd package
+  yum:
+    name: httpd
+    state: latest
+
+- name: start httpd
+  systemd:
+    name: httpd
+    state: started
+    enabled: yes

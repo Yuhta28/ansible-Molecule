@@ -1,9 +1,32 @@
 ---
-# This is an example playbook to execute Ansible tests.
+# This is httpd install playbook to execute Ansible tests.
 
 - name: Verify
   hosts: all
   tasks:
-  - name: Example assertion
+  - ignore_errors: yes
+    block:
+    - name: httpdパッケージの存在を確認する
+      yum:
+        list: httpd
+      register: result_rpm
+
+    - name: httpdプロセスが起動していることを確認する
+      shell: ps -ef | grep http[d]
+      register: result_proc
+
+    - name: httpdサービスが自動起動になっているかを確認する
+      shell: systemctl is-enabled httpd
+      register: result_enabled
+
+  - name: 結果をまとめて確認する
     assert:
-      that: true
+      that: "{{ result.failed == false }}"
+    loop:
+      - "{{ result_rpm }}"
+      - "{{ result_proc }}"
+      - "{{ result_enabled }}"
+    loop_control:
+      loop_var: result
+
+
