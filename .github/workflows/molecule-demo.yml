@@ -24,4 +24,4 @@ jobs:
           python3 -m pip install "molecule[docker,lint]"
       - name: Test with molecule
         run: |
-          molecule test
+          molecule init role first-mol
