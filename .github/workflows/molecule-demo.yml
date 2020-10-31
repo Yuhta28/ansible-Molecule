@@ -25,7 +25,7 @@ jobs:
       - name: Test with molecule
         run: |
           molecule init role first-mol
-          cd first-mole
+          cd first-mol
           rm molecule/default/create.yml
           rm molecule/default/destroy.yml
           molecule test
