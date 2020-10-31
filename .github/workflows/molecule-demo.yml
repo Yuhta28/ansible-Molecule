@@ -25,3 +25,6 @@ jobs:
       - name: Test with molecule
         run: |
           molecule init role first-mol
+          cd first-mol
+          pwd
+          molecule test
