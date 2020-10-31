@@ -22,6 +22,8 @@ jobs:
           sudo apt install docker
           python3 -m pip install --upgrade pip
           python3 -m pip install "molecule[docker,lint]"
+          sudo systemctl unmask docker.service
+          sudo systemctl unmask docker.socket
           sudo systemctl start docker
           sudo systemctl enable docker
       - name: Test with molecule
