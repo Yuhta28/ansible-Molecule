@@ -22,7 +22,7 @@ jobs:
           sudo apt install docker git
           git clone https://github.com/Yuhta28/ansible-Molecule.git
           python3 -m pip install --upgrade pip
-          python3 -m pip install -r ansible-Molecule/requierments.txt
+          python3 -m pip install -r ansible-Molecule/requirements.txt
           python3 -m pip install "molecule[docker,lint]"
       - name: Test with molecule
         run: |
