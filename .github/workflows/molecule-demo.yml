@@ -24,7 +24,7 @@ jobs:
           sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
           sudo apt-get update
           sudo apt-get install docker-ce docker-ce-cli containerd.io
-          git clone -b Yuhta28-patch-2 https://github.com/Yuhta28/ansible-Molecule.git
+          git clone -b  https://github.com/Yuhta28/ansible-Molecule.git
           python3 -m pip install --upgrade pip
           python3 -m pip install -r ansible-Molecule/requirements.txt
           python3 -m pip install "molecule[docker,lint]"
