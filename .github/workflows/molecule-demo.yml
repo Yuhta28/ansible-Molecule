@@ -13,12 +13,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          path: molecule_demo
+
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
+      - uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-
+
       - name: Install dependencies
         run: |
           sudo apt install git apt-transport-https ca-certificates curl gnupg-agent software-properties-common
@@ -28,8 +33,9 @@ jobs:
           sudo apt-get install docker-ce docker-ce-cli containerd.io
           python3 -m pip install --upgrade pip
           python3 -m pip install ansible
-          #python3 -m pip install -r "molecule_demo/requirements.txt"
           python3 -m pip install "molecule[docker,lint]"
+          pip list
+
       - name: Test with molecule
         run: |
-          cd molecule_demo/testmol ; molecule test
+          cd testmol ; molecule test
