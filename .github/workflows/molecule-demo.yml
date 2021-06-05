@@ -29,8 +29,8 @@ jobs:
           #git clone https://github.com/Yuhta28/ansible-Molecule.git
           python3 -m pip install --upgrade pip
           ls
-          python3 -m pip install -r "requirements.txt"
+          python3 -m pip install -r "molecule_demo/requirements.txt"
           python3 -m pip install "molecule[docker,lint]"
       - name: Test with molecule
         run: |
-          cd testmol ; molecule test
+          cd molecule_demo/testmol ; molecule test
