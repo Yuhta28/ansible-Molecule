@@ -23,7 +23,7 @@ jobs:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: ${{ runner.os }}-pip-
-          
+
       - name: Install dependencies
         run: |
           sudo apt install git apt-transport-https ca-certificates curl gnupg-agent software-properties-common
@@ -34,6 +34,7 @@ jobs:
           python3 -m pip install --upgrade pip
           python3 -m pip install ansible
           python3 -m pip install "molecule[docker,lint]"
+          pip list
 
       - name: Test with molecule
         run: |
