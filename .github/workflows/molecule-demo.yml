@@ -14,6 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - uses: docker-practice/actions-setup-docker@v1
+
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
@@ -26,15 +28,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt install git apt-transport-https ca-certificates curl gnupg-agent software-properties-common
-          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-          sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-          sudo apt-get update
-          sudo apt-get install docker-ce docker-ce-cli containerd.io
           python3 -m pip install --upgrade pip
           python3 -m pip install ansible
           python3 -m pip install "molecule[docker,lint]"
-          pip list
 
       - name: Test with molecule
         run: |
