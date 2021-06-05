@@ -28,7 +28,8 @@ jobs:
           sudo apt-get install docker-ce docker-ce-cli containerd.io
           #git clone https://github.com/Yuhta28/ansible-Molecule.git
           python3 -m pip install --upgrade pip
-          python3 -m pip install -r requirements.txt
+          ls
+          python3 -m pip install -r "requirements.txt"
           python3 -m pip install "molecule[docker,lint]"
       - name: Test with molecule
         run: |
